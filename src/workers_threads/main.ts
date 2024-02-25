@@ -2,7 +2,7 @@ import { Worker } from 'worker_threads'
 
 console.log('Main thread start')
 
-const worker = new Worker('./dist/workers/fibonacciWorker.js')
+const worker = new Worker('./dist/worker_threads/fibonacciWorker.js')
 
 worker.on('message', (result) => {
   console.log(`Fibonacci result: ${result}`)
