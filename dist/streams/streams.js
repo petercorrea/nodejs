@@ -11,6 +11,7 @@ const perfObserver = new PerformanceObserver((items) => {
 perfObserver.observe({ entryTypes: ['measure'], buffered: true });
 // Create large file
 const fileStream = fs.createWriteStream(path.join(path.resolve(), 'largeTextFile.txt'));
+// On write stream finish, start processing the file
 fileStream.on('finish', () => {
     // Process func
     const uppercaseTransform = new Transform({
@@ -40,7 +41,7 @@ fileStream.on('finish', () => {
     });
 });
 for (let i = 0; i < 1_000_000_000; i++) {
-    // manually handle back pressure
+    // Manually handle back pressure
     const overWatermark = fileStream.write(`${i}: This is some looooooooooooooong string of text.\n`);
     if (!overWatermark) {
         await new Promise((resolve) => {
@@ -49,4 +50,4 @@ for (let i = 0; i < 1_000_000_000; i++) {
     }
 }
 fileStream.end();
-// run "node --expose-gc --max-old-space-size=20480 streams.js"
+// run "node --expose-gc streams.js"
