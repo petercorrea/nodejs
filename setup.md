@@ -1,4 +1,8 @@
-# Installation Guide
+# Node.js
+
+Exploring a few Node.js api
+
+## Installation Guide
 
 1. Install Node.js
 2. `npm init`
@@ -13,7 +17,7 @@
         "outDir": "./dist",       
    ```
 
-8. Configure nodemon for TS support by creating `node.json`
+8. Configure nodemon for TS support by creating `nodemon.json`
 
     ```json
     {
@@ -34,6 +38,6 @@
     },
     ```
 
-10. Create a file named `index.js`
+10. Create a file named `index.ts`
 
-11. Run with `node index.js`
+11. Run with `npm run dev`
